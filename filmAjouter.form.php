@@ -13,12 +13,11 @@
 
         <label for="genre"> Genre :</label>
         <select name="genre">
-            <?php
+            <?php                
+            require_once('fonction.php');
             // On établit la connexion seulement si elle n'a pas déjà été établie
-            if (!isset($cnx)) {
-                require_once('fonction.php');
+
                 $cnx = connect_bd('cinema');
-            }
 
             if ($cnx) {
                 // On prépare la requête

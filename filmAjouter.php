@@ -4,13 +4,15 @@ include("fonction.php");
 $cnx=connect_bd('cinema');
 
 if($cnx){
+
+     
     $result = $cnx->prepare('INSERT INTO film (titre, anneeSortie, affiche, idGenre)
                             VALUES (:titre, :anneeSortie, :affiche, :idGenre)');
     $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $anneeSortie = filter_input(INPUT_POST,"anneeSortie");
     $affiche = filter_input(INPUT_POST, "affiche", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $idGenre = filter_input(INPUT_POST,"genre");
-
+     $idGenre = filter_input(INPUT_POST,"genre");
+echo $idGenre;
     $result->bindParam(':titre',$titre, PDO::PARAM_STR);
     $result->bindParam(':anneeSortie',$anneeSortie, PDO::PARAM_INT);
     $result->bindParam(':affiche', $affiche, PDO::PARAM_STR);
