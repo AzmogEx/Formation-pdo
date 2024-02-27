@@ -48,4 +48,3 @@ if ($cnx) {
     echo "erreur";
 }
 deconnect_bd('cinema');
-?>
