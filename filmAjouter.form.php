@@ -13,37 +13,44 @@
 
         <label for="genre"> Genre :</label>
         <select name="genre">
-
             <?php
             require_once('fonction.php');
-            // On établit la connexion seulement si elle n'a pas déjà été établie
-            
+            // Connexion à la base de données
             $cnx = connect_bd('cinema');
 
             if ($cnx) {
-                // On prépare la requête
-                $result = $cnx->prepare('SELECT idGenre, nomGenre FROM Genre;');
-                // On execute la requête
-                $result->execute();
-
-                // Si la requête renvoie une ligne
-                if ($result->rowCount() > 0) {
-                    // Boucle d'alimentation des options de la liste déroulante
-                    while ($donnees = $result->fetch()) {
-                        echo "<option value=" . $donnees['idGenre'] . ">" . $donnees['nomGenre'] . "</option>";
-                    }
+                // Récupérer tous les genres
+                $query = "SELECT idGenre, nomGenre FROM Genre";
+                $genres = $cnx->query($query)->fetchAll(PDO::FETCH_ASSOC);
+                // Afficher les options pour chaque genre
+                foreach ($genres as $genre) {
+                    echo "<option value='" . $genre['idGenre'] . "'>" . $genre['nomGenre'] . "</option>";
                 }
             }
             ?>
         </select>
-        <label for="acteurPrincipal">Nom Acteur principal</label>
-        <input type="text" name="acteurPrincipal" />
 
-        <label for="dateNaissance">Date de naissance Acteur principal</label>
-        <input type="date" name="dateNaissance" />
+        <label for="acteurPrincipal"> Acteur principal :</label>
+        <select name="acteurPrincipal">
+            <?php
+            if ($cnx) {
+                // Récupérer tous les acteurs
+                $query = "SELECT idActeur, Prenom FROM acteur";
+                $acteurs = $cnx->query($query)->fetchAll(PDO::FETCH_ASSOC);
+                // Afficher les options pour chaque acteur
+                foreach ($acteurs as $acteur) {
+                    echo "<option value='" . $acteur['idActeur'] . "'>" . $acteur['Prenom'] . "</option>";
+                }
+            }
+            ?>
+        </select>
 
-        <label for="chiffreAffaire">Chiffre d'affaire généré par le film</label>
+        <label for="role"> Rôle de l'acteur principal :</label>
+        <input type="text" name="role" />
+
+        <label for="chiffreAffaire">Chiffre d'affaire généré par le film :</label>
         <input type="text" name="chiffreAffaire" />
+
 
         <fieldset>
             <legend><b>Salles de diffusion</b></legend>
