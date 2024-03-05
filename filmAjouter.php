@@ -48,3 +48,5 @@ if ($cnx) {
     echo "erreur";
 }
 deconnect_bd('cinema');
+?>
+<a href="index.html">Accueil </a>

@@ -36,6 +36,14 @@
             }
             ?>
         </select>
+        <label for="acteurPrincipal">Nom Acteur principal</label>
+        <input type="text" name="acteurPrincipal" />
+
+        <label for="dateNaissance">Date de naissance Acteur principal</label>
+        <input type="date" name="dateNaissance" />
+
+        <label for="chiffreAffaire">Chiffre d'affaire généré par le film</label>
+        <input type="text" name="chiffreAffaire" />
 
         <fieldset>
             <legend><b>Salles de diffusion</b></legend>
